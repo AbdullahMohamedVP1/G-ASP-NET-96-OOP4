@@ -18,6 +18,10 @@ namespace OOP_Assignment4
         {
         }
 
+        // Implement the abstract EstimatedCost property from Shipment.
+        // Currently returns DeliveryFee; change the expression if you need a different calculation.
+        public override decimal EstimatedCost => DeliveryFee;
+
         public override void PrintShipment()
         {
             Console.WriteLine(ShipmentType);

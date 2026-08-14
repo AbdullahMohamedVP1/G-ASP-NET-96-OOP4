@@ -84,5 +84,15 @@ namespace OOP_Assignment4
                 }
             }
         }
+        public void PrintTrackingStatuses()
+        {
+            foreach (Shipment s in shipments)
+            {
+                if (s is ITrackable t)
+                {
+                    Console.WriteLine(t.GetTrackingStatus());
+                }
+            }
+        }
     }
 }

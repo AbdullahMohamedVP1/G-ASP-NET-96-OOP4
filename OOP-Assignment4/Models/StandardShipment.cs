@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OOP_Assignment4
 {
-    public class StandardShipment : Shipment
+    public class StandardShipment : Shipment, ITrackable, IInsurable
     {
         public override string ShipmentType => "Standard Shipment";
 
@@ -18,6 +18,9 @@ namespace OOP_Assignment4
             : base(trackingCode, description, weight, deliveryFee, destination)
         {
         }
+
+        public override decimal EstimatedCost => DeliveryFee;
+
         public override void PrintShipment()
         {
             Console.WriteLine(ShipmentType);
@@ -27,6 +30,24 @@ namespace OOP_Assignment4
             Console.WriteLine($"Weight        : {Weight} KG");
             Console.WriteLine($"Delivery Fee  : {DeliveryFee} EGP");
             Console.WriteLine($"Estimated Cost: {EstimatedCost} EGP");
+        }
+        public string GetTrackingStatus()
+        {
+            switch (Status)
+            {
+                case ShipmentStatus.Ready:
+                    return $"Shipment {TrackingCode} is Ready.";
+                case ShipmentStatus.OutForDelivery:
+                    return $"Shipment {TrackingCode} is Out for Delivery.";
+                case ShipmentStatus.Delivered:
+                    return $"Shipment {TrackingCode} has been Delivered.";
+                default:
+                    return $"Shipment {TrackingCode} status is unknown.";
+            }
+        }
+        public decimal CalculateInsurance()
+        {
+            return EstimatedCost * 0.05m;
         }
     }
 }

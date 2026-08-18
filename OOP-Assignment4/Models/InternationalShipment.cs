@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OOP_Assignment4
 {
-    public class InternationalShipment : Shipment
+    public class InternationalShipment : Shipment, ITrackable, IInsurable
     {
         private string destinationCountry;
         public string DestinationCountry
@@ -56,12 +56,26 @@ namespace OOP_Assignment4
             Console.WriteLine(ShipmentType);
             Console.WriteLine();
             Console.WriteLine($"Tracking Code       : {TrackingCode}");
-            Console.WriteLine($"Description         : {Description}");
-            Console.WriteLine($"Weight              : {Weight} KG");
-            Console.WriteLine($"Delivery Fee        : {DeliveryFee} EGP");
             Console.WriteLine($"Destination Country : {DestinationCountry}");
-            Console.WriteLine($"Customs Fee         : {CustomsFee} EGP");
             Console.WriteLine($"Estimated Cost      : {EstimatedCost} EGP");
+        }
+        public string GetTrackingStatus()
+        {
+            switch (Status)
+            {
+                case ShipmentStatus.Ready:
+                    return $"Shipment {TrackingCode} is Ready.";
+                case ShipmentStatus.OutForDelivery:
+                    return $"Shipment {TrackingCode} is Out for Delivery.";
+                case ShipmentStatus.Delivered:
+                    return $"Shipment {TrackingCode} has been Delivered.";
+                default:
+                    return $"Shipment {TrackingCode} status is unknown.";
+            }
+        }
+        public decimal CalculateInsurance()
+        {
+            return EstimatedCost * 0.12m;
         }
     }
 }

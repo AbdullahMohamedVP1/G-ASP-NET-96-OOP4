@@ -4,14 +4,14 @@ using System.Text;
 
 namespace OOP_Assignment4
 {
-    public class Shipment
+    public abstract class Shipment
     {
         private string trackingCode;
         private string description;
         private decimal weight;
         private decimal deliveryFee;
-
         public DeliveryAddress Destination { get; set; }
+        public ShipmentStatus Status { get; set; } = ShipmentStatus.Ready;
 
         public string TrackingCode
         {
@@ -54,10 +54,7 @@ namespace OOP_Assignment4
             }
         }
 
-        public virtual decimal EstimatedCost
-        {
-            get { return DeliveryFee + (Weight * 5); }
-        }
+        public abstract decimal EstimatedCost { get; }
         public virtual string ShipmentType => "Shipment";
 
         public Shipment(string trackingCode)
@@ -87,29 +84,16 @@ namespace OOP_Assignment4
             }
         }
 
-        // ==== الإضافة الجديدة بتاعة Part 02 ====
-
-        // 1) updates the shipment weight
         public void UpdateWeight(decimal newWeight)
         {
             Weight = newWeight;
         }
 
-        // 2) updates the shipment weight after adding extra packing weight
         public void UpdateWeight(decimal newWeight, decimal extraPackingWeight)
         {
             Weight = newWeight + extraPackingWeight;
         }
 
-        public virtual void PrintShipment()
-        {
-            Console.WriteLine(ShipmentType);
-            Console.WriteLine();
-            Console.WriteLine($"Tracking Code : {TrackingCode}");
-            Console.WriteLine($"Description   : {Description}");
-            Console.WriteLine($"Weight        : {Weight} KG");
-            Console.WriteLine($"Delivery Fee  : {DeliveryFee} EGP");
-            Console.WriteLine($"Estimated Cost: {EstimatedCost} EGP");
-        }
+        public abstract void PrintShipment();
     }
 }

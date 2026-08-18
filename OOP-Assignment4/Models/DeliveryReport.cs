@@ -13,7 +13,8 @@ namespace OOP_Assignment4
 
         public static void PrintInsurance(IInsurable shipment)
         {
-            Console.WriteLine($"Insurance Cost: {shipment.CalculateInsurance()} EGP");
+    string typeName = (shipment as Shipment)?.ShipmentType ?? "Shipment";
+    Console.WriteLine($"{typeName} Insurance : {shipment.CalculateInsurance()} EGP");
         }
     }
 }

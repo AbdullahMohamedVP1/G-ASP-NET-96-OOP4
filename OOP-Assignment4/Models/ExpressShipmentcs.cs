@@ -40,9 +40,6 @@ namespace OOP_Assignment4
             Console.WriteLine(ShipmentType);
             Console.WriteLine();
             Console.WriteLine($"Tracking Code : {TrackingCode}");
-            Console.WriteLine($"Description   : {Description}");
-            Console.WriteLine($"Weight        : {Weight} KG");
-            Console.WriteLine($"Delivery Fee  : {DeliveryFee} EGP");
             Console.WriteLine($"Extra Fee     : {ExtraFee} EGP");
             Console.WriteLine($"Estimated Cost: {EstimatedCost} EGP");
         }
